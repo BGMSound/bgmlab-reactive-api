@@ -22,7 +22,7 @@ dependencies {
 	//Spring
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	//implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
 
 	//Kotlin
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
@@ -31,20 +31,22 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 
 	//Database
-	//implementation("io.asyncer:r2dbc-mysql:1.1.2")
+	implementation("org.postgresql:postgresql")
+	implementation("io.r2dbc:r2dbc-postgresql:0.8.3.RELEASE")
 
 	//Test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
 }
 
-tasks.withType<KotlinCompile> {
-	kotlinOptions {
-		freeCompilerArgs += "-Xjsr305=strict"
-		jvmTarget = "17"
+tasks {
+	withType<KotlinCompile> {
+		kotlinOptions {
+			freeCompilerArgs += "-Xjsr305=strict"
+			jvmTarget = "17"
+		}
 	}
-}
-
-tasks.withType<Test> {
-	useJUnitPlatform()
+	withType<Test> {
+		useJUnitPlatform()
+	}
 }
