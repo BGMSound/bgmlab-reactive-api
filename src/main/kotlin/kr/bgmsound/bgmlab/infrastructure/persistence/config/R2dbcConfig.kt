@@ -12,7 +12,6 @@ import org.springframework.r2dbc.core.DatabaseClient
 @Configuration
 @EnableR2dbcRepositories
 class R2dbcConfig(
-    @Value("\${spring.r2dbc.url}") private val url: String,
     @Value("\${spring.r2dbc.schema}") private val schema: String,
     @Value("\${spring.r2dbc.username}") private val username: String,
     @Value("\${spring.r2dbc.password}") private val password: String,
